@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowLeft, Send, Loader, Key } from 'lucide-react';
+import { ArrowLeft, Send, Loader } from 'lucide-react';
 import { MiloMode } from '@/types';
 import TextToSpeech from './TextToSpeech';
-import ApiKeyInput from './ApiKeyInput';
 
 interface ChatInterfaceProps {
   mode: MiloMode;
@@ -17,15 +16,9 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ mode, onBack }) => {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showApiKeyInput, setShowApiKeyInput] = useState(false);
 
-  // Use your API key by default
-  const DEFAULT_API_KEY = 'AIzaSyCTzjEiQquKY5Hm-P2o1w4GWPS7r3HLhUY';
-
-  const getApiKey = () => {
-    const savedApiKey = localStorage.getItem('gemini_api_key');
-    return savedApiKey || DEFAULT_API_KEY;
-  };
+  // Your default API key - users don't need to worry about this
+  const API_KEY = 'AIzaSyCTzjEiQquKY5Hm-P2o1w4GWPS7r3HLhUY';
 
   const getModeEmoji = (mode: MiloMode) => {
     switch (mode) {
@@ -70,8 +63,7 @@ Respond as Milo in ${mode} mode:`;
 
   const callGeminiAPI = async (prompt: string): Promise<string> => {
     try {
-      const apiKey = getApiKey();
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -119,11 +111,6 @@ Respond as Milo in ${mode} mode:`;
     }
   };
 
-  const handleApiKeySubmit = (key: string) => {
-    localStorage.setItem('gemini_api_key', key);
-    setShowApiKeyInput(false);
-  };
-
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !isLoading) {
       handleAskMilo();
@@ -150,42 +137,27 @@ Respond as Milo in ${mode} mode:`;
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {showApiKeyInput && (
-                <ApiKeyInput onSubmit={handleApiKeySubmit} onCancel={() => setShowApiKeyInput(false)} />
-              )}
-              
-              <div className="flex justify-between items-center">
-                <div className="flex space-x-2 flex-1">
-                  <Input
-                    type="text"
-                    placeholder="Ask your question here..."
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    disabled={isLoading}
-                    className="flex-1"
-                  />
-                  <Button 
-                    onClick={handleAskMilo}
-                    disabled={isLoading || !userInput.trim()}
-                    className={`bg-gradient-to-r ${getModeColor(mode)} hover:opacity-90`}
-                  >
-                    {isLoading ? (
-                      <Loader className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <Send className="w-4 h-4" />
-                    )}
-                    {isLoading ? 'Thinking...' : 'Ask Milo'}
-                  </Button>
-                </div>
-                <Button
-                  onClick={() => setShowApiKeyInput(true)}
-                  variant="outline"
-                  size="sm"
-                  className="ml-2"
-                  title="Use Custom API Key (Optional)"
+              <div className="flex space-x-2">
+                <Input
+                  type="text"
+                  placeholder="Ask your question here..."
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  disabled={isLoading}
+                  className="flex-1"
+                />
+                <Button 
+                  onClick={handleAskMilo}
+                  disabled={isLoading || !userInput.trim()}
+                  className={`bg-gradient-to-r ${getModeColor(mode)} hover:opacity-90`}
                 >
-                  <Key className="w-4 h-4" />
+                  {isLoading ? (
+                    <Loader className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4" />
+                  )}
+                  {isLoading ? 'Thinking...' : 'Ask Milo'}
                 </Button>
               </div>
 
