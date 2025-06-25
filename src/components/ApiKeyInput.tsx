@@ -31,14 +31,14 @@ const ApiKeyInput: React.FC<ApiKeyInputProps> = ({ onSubmit, onCancel }) => {
       <CardHeader>
         <CardTitle className="flex items-center text-blue-700">
           <Key className="w-5 h-5 mr-2" />
-          Enter Your Gemini API Key
+          Use Your Own API Key (Optional)
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           <p className="text-sm text-gray-600">
-            To use Gemini AI for better responses, please enter your Google AI Studio API key. 
-            You can get one for free at{' '}
+            Milo is already powered by AI! If you want to use your own Gemini API key instead, 
+            you can get one for free at{' '}
             <a 
               href="https://aistudio.google.com/app/apikey" 
               target="_blank" 
@@ -53,7 +53,7 @@ const ApiKeyInput: React.FC<ApiKeyInputProps> = ({ onSubmit, onCancel }) => {
             <div className="relative flex-1">
               <Input
                 type={showKey ? 'text' : 'password'}
-                placeholder="Enter your Gemini API key..."
+                placeholder="Enter your Gemini API key (optional)..."
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
                 onKeyPress={handleKeyPress}
@@ -70,7 +70,7 @@ const ApiKeyInput: React.FC<ApiKeyInputProps> = ({ onSubmit, onCancel }) => {
               </Button>
             </div>
             <Button onClick={handleSubmit} disabled={!apiKey.trim()}>
-              Save
+              Use Mine
             </Button>
             <Button onClick={onCancel} variant="outline">
               Cancel
@@ -78,11 +78,11 @@ const ApiKeyInput: React.FC<ApiKeyInputProps> = ({ onSubmit, onCancel }) => {
           </div>
           
           <p className="text-xs text-gray-500">
-            Your API key is stored securely in your browser's local storage and never sent to our servers.
+            Your custom API key would be stored securely in your browser and never sent to our servers.
           </p>
         </div>
       </CardContent>
-    </Card>
+    </div>
   );
 };
 

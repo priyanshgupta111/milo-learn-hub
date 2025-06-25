@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,17 +17,15 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ mode, onBack }) => {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState('');
   const [showApiKeyInput, setShowApiKeyInput] = useState(false);
 
-  useEffect(() => {
+  // Use your API key by default
+  const DEFAULT_API_KEY = 'AIzaSyCTzjEiQquKY5Hm-P2o1w4GWPS7r3HLhUY';
+
+  const getApiKey = () => {
     const savedApiKey = localStorage.getItem('gemini_api_key');
-    if (savedApiKey) {
-      setApiKey(savedApiKey);
-    } else {
-      setShowApiKeyInput(true);
-    }
-  }, []);
+    return savedApiKey || DEFAULT_API_KEY;
+  };
 
   const getModeEmoji = (mode: MiloMode) => {
     switch (mode) {
@@ -72,6 +70,7 @@ Respond as Milo in ${mode} mode:`;
 
   const callGeminiAPI = async (prompt: string): Promise<string> => {
     try {
+      const apiKey = getApiKey();
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: {
@@ -107,11 +106,6 @@ Respond as Milo in ${mode} mode:`;
   const handleAskMilo = async () => {
     if (!userInput.trim()) return;
     
-    if (!apiKey) {
-      setShowApiKeyInput(true);
-      return;
-    }
-    
     setIsLoading(true);
     
     try {
@@ -119,14 +113,13 @@ Respond as Milo in ${mode} mode:`;
       const geminiResponse = await callGeminiAPI(prompt);
       setResponse(geminiResponse);
     } catch (error) {
-      setResponse("Sorry, I'm having trouble connecting to my knowledge base right now. Please check your API key and try again!");
+      setResponse("Sorry, I'm having trouble connecting to my knowledge base right now. Please try again in a moment!");
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleApiKeySubmit = (key: string) => {
-    setApiKey(key);
     localStorage.setItem('gemini_api_key', key);
     setShowApiKeyInput(false);
   };
@@ -190,7 +183,7 @@ Respond as Milo in ${mode} mode:`;
                   variant="outline"
                   size="sm"
                   className="ml-2"
-                  title="Update API Key"
+                  title="Use Custom API Key (Optional)"
                 >
                   <Key className="w-4 h-4" />
                 </Button>
