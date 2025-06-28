@@ -1,32 +1,25 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Brain, Heart, Zap, BookOpen, Target, Calendar, MessageCircle, Star, ArrowRight } from 'lucide-react';
-
 interface LandingPageProps {
   onGetStarted: () => void;
 }
-
-const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+const LandingPage: React.FC<LandingPageProps> = ({
+  onGetStarted
+}) => {
+  return <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 py-12 md:py-20">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
-            <span className="text-6xl md:text-8xl">🧠</span>
+            <span className="text-6xl md:text-8xl">🤖</span>
           </div>
           <h1 className="text-4xl md:text-7xl font-black mb-6 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 bg-clip-text text-transparent leading-tight">
             Milo teaches better than your school ever did.
           </h1>
-          <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-medium">
-            Choose your AI study crush. Learn in your vibe. Nerd out in your tone.
-          </p>
-          <Button 
-            onClick={onGetStarted}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-          >
+          <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-medium">Choose your AI study mode. Learn in your vibe. Nerd out in your tone.</p>
+          <Button onClick={onGetStarted} className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
             Ask Milo Anything <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
@@ -217,10 +210,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <p className="text-xl md:text-2xl text-white/90 mb-8 font-medium">
             Milo's waiting (impatiently). 🕐
           </p>
-          <Button 
-            onClick={onGetStarted}
-            className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-          >
+          <Button onClick={onGetStarted} className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
             Open Milo Chat <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
@@ -232,8 +222,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           Made with 💜 for students who deserve better than boring education
         </p>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default LandingPage;
