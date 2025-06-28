@@ -5,11 +5,11 @@ import { Volume2, VolumeX, Loader, Settings } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 
-interface TextToSpeechProps {
+interface EnhancedTextToSpeechProps {
   text: string;
 }
 
-const TextToSpeech: React.FC<TextToSpeechProps> = ({ text }) => {
+const EnhancedTextToSpeech: React.FC<EnhancedTextToSpeechProps> = ({ text }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [apiKey, setApiKey] = useState('');
@@ -135,7 +135,7 @@ const TextToSpeech: React.FC<TextToSpeechProps> = ({ text }) => {
   };
 
   return (
-    <div className="relative flex items-center space-x-2">
+    <div className="flex items-center space-x-2">
       <Button
         onClick={handleSpeak}
         variant="outline"
@@ -198,4 +198,4 @@ const TextToSpeech: React.FC<TextToSpeechProps> = ({ text }) => {
   );
 };
 
-export default TextToSpeech;
+export default EnhancedTextToSpeech;
