@@ -10,7 +10,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
 }) => {
   return <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-12 md:py-20">
+      <section className="relative overflow-hidden px-6 py-12 md:py-20 bg-[#dabbeb]">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
             <span className="text-6xl md:text-8xl">🤖</span>
@@ -26,7 +26,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
       </section>
 
       {/* How It Works */}
-      <section className="px-6 py-16 bg-white/50">
+      <section className="px-6 py-16 bg-[#dabbeb]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-black text-center mb-12 text-gray-800">
             How It Works ✨
