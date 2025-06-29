@@ -12,7 +12,7 @@ interface TextToSpeechProps {
 const TextToSpeech: React.FC<TextToSpeechProps> = ({ text }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState('');
+  const [apiKey, setApiKey] = useState('sk_fde9f4ec5166aad19e20b78dc449d0fcba6cb92a1dcb4e6c'); // Default API key
   const [showSettings, setShowSettings] = useState(false);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
 
@@ -21,11 +21,6 @@ const TextToSpeech: React.FC<TextToSpeechProps> = ({ text }) => {
   const MODEL_ID = 'eleven_multilingual_v2'; // Best quality model
 
   const handleElevenLabsSpeak = async () => {
-    if (!apiKey) {
-      setShowSettings(true);
-      return;
-    }
-
     if (isPlaying && currentAudio) {
       currentAudio.pause();
       setIsPlaying(false);
@@ -127,11 +122,8 @@ const TextToSpeech: React.FC<TextToSpeechProps> = ({ text }) => {
   };
 
   const handleSpeak = () => {
-    if (apiKey) {
-      handleElevenLabsSpeak();
-    } else {
-      handleBrowserSpeak();
-    }
+    // Always try ElevenLabs first since we have a default API key
+    handleElevenLabsSpeak();
   };
 
   return (
@@ -168,20 +160,20 @@ const TextToSpeech: React.FC<TextToSpeechProps> = ({ text }) => {
             <div className="space-y-3">
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  ElevenLabs API Key (Optional)
+                  ElevenLabs API Key
                 </label>
                 <Input
                   type="password"
-                  placeholder="Enter your ElevenLabs API key"
+                  placeholder="API key is already configured"
                   value={apiKey}
                   onChange={(e) => setApiKey(e.target.value)}
                   className="w-full"
                 />
               </div>
               <div className="text-xs text-gray-500">
-                <p>• With API key: High-quality, emotional voice</p>
-                <p>• Without API key: Basic browser voice</p>
-                <p>• Get your free API key from elevenlabs.io</p>
+                <p>• High-quality, emotional voice is now enabled by default</p>
+                <p>• You can update the API key if needed</p>
+                <p>• Falls back to browser voice if API fails</p>
               </div>
               <Button
                 onClick={() => setShowSettings(false)}
