@@ -144,13 +144,11 @@ const LandingPage: React.FC<LandingPageProps> = ({
       </section>
 
       {/* FAQ Section */}
-      <section className="px-6 py-16">
+      <section className="px-6 py-16 bg-[p#] bg-[#dabbeb]">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black text-center mb-12 text-gray-800">
-            FAQ (But Make It Fun) 🤔
-          </h2>
+          <h2 className="text-3xl md:text-5xl font-black text-center mb-12 text-gray-800">FAQ 🤔</h2>
           <div className="space-y-6">
-            <Card className="p-6 hover:shadow-lg transition-shadow">
+            <Card className="p-6 hover:shadow-lg transition-shadow bg-orange-200">
               <CardContent className="pt-4">
                 <h3 className="font-bold text-lg mb-2">Is Milo real?</h3>
                 <p className="text-gray-600">As real as your exam panic. Just way more helpful.</p>
