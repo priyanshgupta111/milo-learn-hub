@@ -13,7 +13,9 @@ const LandingPage: React.FC<LandingPageProps> = ({
       <section className="relative overflow-hidden px-6 py-12 md:py-20 bg-gradient-to-r from-purple-200 via-pink-200 to-blue-200">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
-            <span className="text-6xl md:text-8xl">🤖</span>
+            <span className="text-6xl md:text-8xl">
+
+          </span>
           </div>
           <h1 className="text-4xl md:text-7xl font-black mb-6 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 bg-clip-text text-transparent leading-tight">
             Milo teaches better than your school ever did.
@@ -200,19 +202,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
       </section>
 
       {/* Final CTA */}
-      <section className="px-6 py-20 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-6xl font-black mb-6 text-white">
-            Ask your first question now.
-          </h2>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 font-medium">
-            Milo's waiting (impatiently). 🕐
-          </p>
-          <Button onClick={onGetStarted} className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
-            Open Milo Chat <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
-      </section>
+      
 
       {/* Footer */}
       <footer className="px-6 py-8 bg-gray-900 text-center">
