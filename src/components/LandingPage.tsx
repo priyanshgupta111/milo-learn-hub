@@ -8,9 +8,9 @@ interface LandingPageProps {
 const LandingPage: React.FC<LandingPageProps> = ({
   onGetStarted
 }) => {
-  return <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+  return <div className="min-h-screen bg-gradient-to-r from-purple-100 via-pink-100 to-blue-100">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-12 md:py-20 bg-[#dabbeb]">
+      <section className="relative overflow-hidden px-6 py-12 md:py-20 bg-gradient-to-r from-purple-200 via-pink-200 to-blue-200">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
             <span className="text-6xl md:text-8xl">🤖</span>
@@ -26,7 +26,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
       </section>
 
       {/* How It Works */}
-      <section className="px-6 py-16 bg-[#dabbeb]">
+      <section className="px-6 py-16">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-black text-center mb-12 text-gray-800">
             How It Works ✨
@@ -144,7 +144,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
       </section>
 
       {/* FAQ Section */}
-      <section className="px-6 py-16 bg-[p#] bg-[#dabbeb]">
+      <section className="px-6 py-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-black text-center mb-12 text-gray-800">FAQ 🤔</h2>
           <div className="space-y-6">
@@ -177,7 +177,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
       </section>
 
       {/* About Milo */}
-      <section className="px-6 py-16 bg-gradient-to-r from-purple-100 via-pink-100 to-blue-100">
+      <section className="px-6 py-16 bg-white/80 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
             <span className="text-6xl">🤖</span>
