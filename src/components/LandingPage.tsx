@@ -13,11 +13,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
       <section className="relative overflow-hidden px-6 py-12 md:py-20 bg-gradient-to-r from-purple-200 via-pink-200 to-blue-200">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
-            <img 
-              src="/lovable-uploads/afe0df5b-9b17-4be7-afae-7363486d5833.png" 
-              alt="Milo Logo" 
-              className="w-24 h-24 md:w-32 md:h-32 mx-auto"
-            />
+            <span className="text-6xl md:text-8xl">🧠</span>
           </div>
           <h1 className="text-4xl md:text-7xl font-black mb-6 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 bg-clip-text text-transparent leading-tight">
             Milo teaches better than your school ever did.
